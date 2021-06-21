@@ -16,6 +16,36 @@ http://localhost:8080/update/user/conferance/{id}  PUT - update users reservatio
 
 
 
+Przykładowe wartości użytkowników
+
+[
+    {
+        "name": "Anna",
+        "email": "Anna@.pl"
+
+    },
+    {
+        "name": "Jakub",
+        "email": "Jakub@.pl"
+    },
+    {
+        "name": "Adam",
+        "email": "Adam@.pl"
+    },
+    {
+        "name": "Ewa",
+        "email": "Ewa@.pl"
+    },
+    {
+        "name": "Tomek",
+        "email": "Tomek@.pl"
+    },
+    {
+        "name": "Edward",
+        "email": "Edward@.pl"
+    }
+]
+
 
 
 Początkowe wartości tabeli Conferance
@@ -42,3 +72,5 @@ Conferance conf = new Conferance();
 		conf.setMembers(0);
 		conf.setDate("01.06.2021");
 		conferanceRepository.save(conf);
+
+

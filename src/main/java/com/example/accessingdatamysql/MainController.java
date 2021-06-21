@@ -67,6 +67,7 @@ public class MainController {
 	public @ResponseBody Iterable<Conferance> getAllConferances() {
 		// This returns a JSON or XML with the users
 
+
 		return conferanceRepository.findAll();
 	}
 
