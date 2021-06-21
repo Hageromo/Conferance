@@ -1,9 +1,9 @@
 package com.example.accessingdatamysql;
 
-
 import com.example.accessingdatamysql.Conferance.Conferance;
 import com.example.accessingdatamysql.Conferance.ConferanceRepository;
 
+import com.example.accessingdatamysql.Confirmations.Confirm;
 import com.example.accessingdatamysql.Exceptions.AlreadyExistException;
 import com.example.accessingdatamysql.Exceptions.ConferanceNotFoundException;
 import com.example.accessingdatamysql.Exceptions.UserNotFoundException;
@@ -12,13 +12,7 @@ import com.example.accessingdatamysql.Services.UpdateUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import org.json.simple.JSONObject;
-
-
-import java.awt.*;
 import java.io.*;
-import java.util.List;
-import java.util.Optional;
 
 
 @RestController// This means that this class is a Controller
@@ -29,10 +23,11 @@ public class MainController {
 	@Autowired
 	private ConferanceRepository conferanceRepository;
 
+	Confirm confirm = new Confirm();
 
 
 
-    @PostMapping(path="/set/user") // Map ONLY POST Requests							// add new user
+    @PostMapping(path="/set/user") 							// add new user
 	public @ResponseBody String addNewUser (@RequestBody UpdateUser update) {
 		// @ResponseBody means the returned String is the response, not a view name
 		// @RequestParam means it is a parameter from the GET or POST request
@@ -115,6 +110,7 @@ public class MainController {
     @PutMapping("/update/user/conferance/{id}")     // update your conferance status
     public @ResponseBody void updateUserConferance(@PathVariable("id") Integer id, @RequestBody UpdateUser update) throws IOException {
 
+
         User user = userRepository.findById(id)
                 .orElseThrow(() -> new ConferanceNotFoundException(id));
 
@@ -133,6 +129,7 @@ public class MainController {
                 conf.setMembers(conf.getMembers() + 1);
                 user.setMember(true);
 
+                confirm.reservation(user.getName(), user.getEmail(), user.getConferance(), conf.getHour(), conf.getDate());
 
             }else if(conf.getMembers() == null){
                 conf.setMembers(1);
@@ -159,6 +156,9 @@ public class MainController {
         }
 
     }
+
+
+
 
 
 
