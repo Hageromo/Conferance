@@ -16,7 +16,7 @@ http://localhost:8080/update/user/conferance/{id}  PUT - update users reservatio
 
 
 
-Przykładowe wartości użytkowników
+Przykładowe wartości użytkownikówmvn
 
 [
     {

@@ -9,6 +9,8 @@ import com.example.accessingdatamysql.Exceptions.ConferanceNotFoundException;
 import com.example.accessingdatamysql.Exceptions.UserNotFoundException;
 
 import com.example.accessingdatamysql.Services.UpdateUser;
+import com.example.accessingdatamysql.User.User;
+import com.example.accessingdatamysql.User.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

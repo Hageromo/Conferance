@@ -9,9 +9,9 @@ public class Conferance {
 
     @Id
     private Integer id;
-    private String hour; //godzina rozpoczecia
-    private String end; //godzina zakonczenia
-    private Integer members; //ilosc wolnych miejsc
+    private String hour;
+    private String end;
+    private Integer members;
     private String date;
 
     public String getEnd() {
