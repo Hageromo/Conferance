@@ -6,13 +6,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity // This tells Hibernate to make a table out of this class
-public class User {
+public class ConfirmedUsers {
+
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy= GenerationType.AUTO)
     private Integer id;
     private String name;
-    private String email;
-
+    private Integer conferance;
+    private Integer path;
 
     public Integer getId() {
         return id;
@@ -30,12 +31,20 @@ public class User {
         this.name = name;
     }
 
-    public String getEmail() {
-        return email;
+
+    public Integer getConferance() {
+        return conferance;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setConferance(Integer conferance) {
+        this.conferance = conferance;
     }
 
+    public Integer getPath() {
+        return path;
+    }
+
+    public void setPath(Integer path) {
+        this.path = path;
+    }
 }

@@ -4,8 +4,16 @@ public class UpdateUser {
 
     private String name;
     private String email;
-    private Boolean member;
     private Integer conferance;
+    private Integer path;
+
+    public Integer getPath() {
+        return path;
+    }
+
+    public void setPath(Integer path) {
+        this.path = path;
+    }
 
     public String getName() {
         return name;
@@ -31,14 +39,6 @@ public class UpdateUser {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public Boolean getMember() {
-        return member;
-    }
-
-    public void setMember(Boolean member) {
-        this.member = member;
     }
 
     public Integer getConferance() {

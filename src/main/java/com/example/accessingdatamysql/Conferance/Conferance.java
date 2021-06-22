@@ -2,6 +2,7 @@ package com.example.accessingdatamysql.Conferance;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import java.util.ArrayList;
 
 @Entity
 public class Conferance {
@@ -13,6 +14,9 @@ public class Conferance {
     private String end;
     private Integer members;
     private String date;
+
+
+
 
     public String getEnd() {
         return end;

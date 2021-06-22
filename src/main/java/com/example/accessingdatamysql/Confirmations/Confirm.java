@@ -12,11 +12,11 @@ public class Confirm {
     DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd");
     String currentDateTime = dateFormatter.format(new Date());
 
-    public void reservation(String userName, String userEmail, Integer userConferance, String conferanceHour, String conferanceDate){       // make confirmation about user's reservation
+    public void reservation(String userName, String userEmail, Integer userConferance, String conferanceHour, String conferanceDate, Integer conferancePath){       // make confirmation about user's reservation
         try (PrintWriter writer = new PrintWriter(new File("powiadomienia.csv"))) {
 
             StringBuilder sb = new StringBuilder();
-            sb.append(userName + ", " + userEmail + ", konferencja " + userConferance + ", godzina " + conferanceHour + ", data konferencji " + conferanceDate + ", data rezerwacji " + currentDateTime);
+            sb.append(userName + ", " + userEmail + ", konferencja " + userConferance + ", prelekcja " + conferancePath + ", godzina " + conferanceHour + ", data konferencji " + conferanceDate + ", data rezerwacji " + currentDateTime);
 
             writer.write(sb.toString());
 

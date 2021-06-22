@@ -2,6 +2,9 @@ package com.example.accessingdatamysql;
 
 import com.example.accessingdatamysql.Conferance.Conferance;
 import com.example.accessingdatamysql.Conferance.ConferanceRepository;
+import com.example.accessingdatamysql.Path.Path;
+import com.example.accessingdatamysql.Path.PathRepository;
+
 import org.jboss.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
@@ -16,6 +19,9 @@ public class DatabaseInitializer {
 
     @Autowired
     private ConferanceRepository conferanceRepository;
+
+    @Autowired
+    private PathRepository pathRepository;
 
     private static final Logger LOG
             = Logger.getLogger(DatabaseInitializer.class);
@@ -50,5 +56,29 @@ public class DatabaseInitializer {
         conf.setMembers(0);
         conf.setDate("01.06.2021");
         conferanceRepository.save(conf);
+
+
+
+        Path path = new Path();
+
+        path.setId(1);
+        path.setLimit1(0);
+        path.setLimit2(0);
+        path.setLimit3(0);
+        pathRepository.save(path);
+
+        path.setId(2);
+        path.setLimit1(0);
+        path.setLimit2(0);
+        path.setLimit3(0);
+        pathRepository.save(path);
+
+        path.setId(3);
+        path.setLimit1(0);
+        path.setLimit2(0);
+        path.setLimit3(0);
+        pathRepository.save(path);
     }
+
+
 }

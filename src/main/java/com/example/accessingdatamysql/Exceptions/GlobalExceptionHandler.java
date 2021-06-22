@@ -36,4 +36,10 @@ public class GlobalExceptionHandler {
     }
 
 
+    @ExceptionHandler(TooManyPrelectionException.class)
+    public ResponseEntity<?> handleResourceNotFoundException(TooManyPrelectionException exception, WebRequest request){
+        ErrorDetails errorDetails = new ErrorDetails(new Date(), exception.getMessage(), request.getDescription(false));
+        return new ResponseEntity(errorDetails, HttpStatus.NOT_FOUND);
+    }
+
 }

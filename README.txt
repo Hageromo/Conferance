@@ -2,9 +2,13 @@ http://localhost:8080/set/user   POST - add user
 
 http://localhost:8080/get/users   GET - return all users
 
+http://localhost:8080/get/confirmed   GET - return all users that are registered on any conferacnce
+
 http://localhost:8080/get/user/{id}   GET - return user by id
 
 http://localhost:8080/get/conferances  GET - return all cnferances
+
+http://localhost:8080/get/paths  GET - return all paths (ścieżki tematyczne które odbywają się na konferencji)
 
 http://localhost:8080/get/conferance/{id}  GET - return conferance by id
 
@@ -12,7 +16,11 @@ http://localhost:8080/get/conferance/name/{name}  GET - return conferance infora
 
 http://localhost:8080/update/user/email/{id}  PUT - update users email
 
-http://localhost:8080/update/user/conferance/{id}  PUT - update users reservation status
+http://localhost:8080/update/user/{name}/{email}  PUT - update users reservation status
+
+http://localhost:8080/get/path/{name}  GET - return paths that user is on
+
+http://localhost:8080/cancel/{id}  DELETE - delete reservation
 
 
 
@@ -74,3 +82,18 @@ Conferance conf = new Conferance();
 		conferanceRepository.save(conf);
 
 
+Początkowe wartości tabeli Path
+
+Path path = new Path();
+
+        path.setId(1);
+        path.setLimit(0);
+        pathRepository.save(path);
+
+        path.setId(2);
+        path.setLimit(0);
+        pathRepository.save(path);
+
+        path.setId(3);
+        path.setLimit(0);
+        pathRepository.save(path);
