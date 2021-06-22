@@ -19,6 +19,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.*;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 
 @RestController// This means that this class is a Controller
@@ -133,6 +136,9 @@ public class MainController {
     @PutMapping("/update/user/{name}/{email}")     // update your conferance status
     public @ResponseBody void updateUserConferance(@PathVariable("name") String name, @RequestBody UpdateUser update) throws IOException {
 
+        DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss a");
+        String currentDateTime = dateFormatter.format(new Date());
+
         User user = userRepository.findAllByName(name);
         Path path = pathRepository.findAllById(update.getPath());
         Conferance conferance = conferanceRepository.findAllById(update.getConferance());
@@ -176,7 +182,7 @@ public class MainController {
 
             confirmedUsersRepository.save(confirmedUsers);
 
-            confirm.reservation(confirmedUsers.getName(), user.getEmail(), confirmedUsers.getConferance(), conferance.getHour(), conferance.getDate(), path.getId());
+            confirm.reservation(confirmedUsers.getName(), user.getEmail(), confirmedUsers.getConferance(), conferance.getHour(), conferance.getDate(), path.getId(), currentDateTime);
 
         }else{
             throw new TooManyPrelectionException("nie mozna zapisac do tej samej konferencji");

@@ -9,10 +9,9 @@ import java.util.Date;
 
 public class Confirm {
 
-    DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd");
-    String currentDateTime = dateFormatter.format(new Date());
 
-    public void reservation(String userName, String userEmail, Integer userConferance, String conferanceHour, String conferanceDate, Integer conferancePath){       // make confirmation about user's reservation
+
+    public void reservation(String userName, String userEmail, Integer userConferance, String conferanceHour, String conferanceDate, Integer conferancePath, String currentDateTime ){       // make confirmation about user's reservation
         try (PrintWriter writer = new PrintWriter(new File("powiadomienia.csv"))) {
 
             StringBuilder sb = new StringBuilder();
