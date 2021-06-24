@@ -162,20 +162,26 @@ public class MainController {
             //dodanie sciezki userowi
             if(update.getPath() == 1) {
                 if(path.getLimit1() < 5){
-                    confirmedUsers.setPath(path.getId());   //ustawia usera na wybrana sciezke
+                    confirmedUsers.setPath(update.getPath());   //ustawia usera na wybrana sciezke
                     path.setLimit1(path.getLimit1() + 1);     //zmieniejsza limit o 1
+                }else {
+                    throw new TooManyPrelectionException("Maksymalna ilość osób na tej prelekcji");
                 }
 
             }else if(update.getPath() == 2) {
                 if(path.getLimit2() < 5){
-                    confirmedUsers.setPath(path.getId());   //ustawia usera na wybrana sciezke
+                    confirmedUsers.setPath(update.getPath());   //ustawia usera na wybrana sciezke
                     path.setLimit2(path.getLimit2() + 1);     //zmieniejsza limit o 1
+                }else {
+                    throw new TooManyPrelectionException("Maksymalna ilość osób na tej prelekcji");
                 }
 
             }else if(update.getPath() == 3) {
                 if(path.getLimit3() < 5){
-                    confirmedUsers.setPath(path.getId());   //ustawia usera na wybrana sciezke
+                    confirmedUsers.setPath(update.getPath());   //ustawia usera na wybrana sciezke
                     path.setLimit3(path.getLimit3() + 1);     //zmieniejsza limit o 1
+                }else {
+                    throw new TooManyPrelectionException("Maksymalna ilość osób na tej prelekcji");
                 }
             }else{
                 throw new TooManyPrelectionException("Too may users on this prelection");
@@ -215,17 +221,44 @@ public class MainController {
         Conferance conferance = conferanceRepository.findAllById(confirmedUsers.getConferance());   //get into conferance and subtract 1 member
         conferance.setMembers(conferance.getMembers() - 1);
 
-        Path path = pathRepository.findAllById(confirmedUsers.getPath());   //get into path and extend limit for other users
+        Path path = pathRepository.findAllById(conferance.getId());   //get into path and extend limit for other users
 
+        //deleting prelection
         if(conferance.getId() == 1){
-            path.setLimit1(path.getLimit1() - 1);
+            if(confirmedUsers.getPath() == 1){
+                path.setLimit1(path.getLimit1() - 1);
 
-        }else if(conferance.getId() == 2){
-            path.setLimit2(path.getLimit2() - 1);
+            }else if(confirmedUsers.getPath() == 2){
+                path.setLimit2(path.getLimit2() - 1);
+
+            }else if(confirmedUsers.getPath() == 3){
+                path.setLimit3(path.getLimit3() - 1);
+            }
+        }else if(conferance.getId() == 2) {
+            if(confirmedUsers.getPath() == 1){
+                path.setLimit1(path.getLimit1() - 1);
+
+            }else if(confirmedUsers.getPath() == 2){
+                path.setLimit2(path.getLimit2() - 1);
+
+            }else if(confirmedUsers.getPath() == 3){
+                path.setLimit3(path.getLimit3() - 1);
+            }
 
         }else if(conferance.getId() == 3) {
-            path.setLimit3(path.getLimit3() - 1);
+            if(confirmedUsers.getPath() == 1){
+                path.setLimit1(path.getLimit1() - 1);
+
+            }else if(confirmedUsers.getPath() == 2){
+                path.setLimit2(path.getLimit2() - 1);
+
+            }else if(confirmedUsers.getPath() == 3){
+                path.setLimit3(path.getLimit3() - 1);
+            }
+        }else{
+            throw new TooManyPrelectionException("Nie można anulować prelekcji");
         }
+
         confirmedUsersRepository.delete(confirmedUsers);
 
         return "Deleted";
