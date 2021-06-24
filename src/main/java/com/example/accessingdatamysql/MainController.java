@@ -113,7 +113,7 @@ public class MainController {
         if(confirmedUsers != null){
             return conferanceRepository.findAllById(confirmedUsers.getConferance());
         }else{
-            throw new TooManyPrelectionException("user does not exist ");
+            throw new TooManyPrelectionException("user has no conferace");
         }
 
     }
@@ -140,8 +140,8 @@ public class MainController {
         String currentDateTime = dateFormatter.format(new Date());
 
         User user = userRepository.findAllByName(name);
-        Path path = pathRepository.findAllById(update.getPath());
         Conferance conferance = conferanceRepository.findAllById(update.getConferance());
+        Path path = pathRepository.findAllById(update.getConferance());
         ConfirmedUsers confUser = confirmedUsersRepository.findAllByName(user.getName());
 
 
@@ -158,20 +158,21 @@ public class MainController {
                 throw new TooManyPrelectionException("Too many users on this conferation");
             }
 
+
             //dodanie sciezki userowi
-            if(conferance.getId() == 1) {
+            if(update.getPath() == 1) {
                 if(path.getLimit1() < 5){
                     confirmedUsers.setPath(path.getId());   //ustawia usera na wybrana sciezke
                     path.setLimit1(path.getLimit1() + 1);     //zmieniejsza limit o 1
                 }
 
-            }else if(conferance.getId() == 2) {
+            }else if(update.getPath() == 2) {
                 if(path.getLimit2() < 5){
                     confirmedUsers.setPath(path.getId());   //ustawia usera na wybrana sciezke
                     path.setLimit2(path.getLimit2() + 1);     //zmieniejsza limit o 1
                 }
 
-            }else if(conferance.getId() == 3) {
+            }else if(update.getPath() == 3) {
                 if(path.getLimit3() < 5){
                     confirmedUsers.setPath(path.getId());   //ustawia usera na wybrana sciezke
                     path.setLimit3(path.getLimit3() + 1);     //zmieniejsza limit o 1
