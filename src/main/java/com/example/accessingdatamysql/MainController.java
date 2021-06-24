@@ -224,39 +224,18 @@ public class MainController {
         Path path = pathRepository.findAllById(conferance.getId());   //get into path and extend limit for other users
 
         //deleting prelection
-        if(conferance.getId() == 1){
-            if(confirmedUsers.getPath() == 1){
-                path.setLimit1(path.getLimit1() - 1);
+        for(int i = 1; i < 4; i++){
+            if(conferance.getId() == i){
+                if(confirmedUsers.getPath() == 1){
+                    path.setLimit1(path.getLimit1() - 1);
 
-            }else if(confirmedUsers.getPath() == 2){
-                path.setLimit2(path.getLimit2() - 1);
+                }else if(confirmedUsers.getPath() == 2){
+                    path.setLimit2(path.getLimit2() - 1);
 
-            }else if(confirmedUsers.getPath() == 3){
-                path.setLimit3(path.getLimit3() - 1);
+                }else if(confirmedUsers.getPath() == 3){
+                    path.setLimit3(path.getLimit3() - 1);
+                }
             }
-        }else if(conferance.getId() == 2) {
-            if(confirmedUsers.getPath() == 1){
-                path.setLimit1(path.getLimit1() - 1);
-
-            }else if(confirmedUsers.getPath() == 2){
-                path.setLimit2(path.getLimit2() - 1);
-
-            }else if(confirmedUsers.getPath() == 3){
-                path.setLimit3(path.getLimit3() - 1);
-            }
-
-        }else if(conferance.getId() == 3) {
-            if(confirmedUsers.getPath() == 1){
-                path.setLimit1(path.getLimit1() - 1);
-
-            }else if(confirmedUsers.getPath() == 2){
-                path.setLimit2(path.getLimit2() - 1);
-
-            }else if(confirmedUsers.getPath() == 3){
-                path.setLimit3(path.getLimit3() - 1);
-            }
-        }else{
-            throw new TooManyPrelectionException("Nie można anulować prelekcji");
         }
 
         confirmedUsersRepository.delete(confirmedUsers);
