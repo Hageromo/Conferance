@@ -10,5 +10,6 @@ public class AccessingDataMysqlApplication {
 		SpringApplication.run(AccessingDataMysqlApplication.class, args);
 
 
+		//test pushowania na nowego brancha
 	}
 }
